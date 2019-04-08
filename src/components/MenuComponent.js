@@ -8,7 +8,8 @@ class Menu extends Component{
         super(props)
 
         this.state={
-        selectedDish: null
+        selectedDish: null,
+        selectedDishComment:null
             }
             console.log("menu component constructor is invoked")
         }
@@ -18,6 +19,7 @@ class Menu extends Component{
         }
         onDishSelect(dish){
             this.setState({selectedDish:dish})
+            this.setState({selectedDishComment:dish.comments})
         }
 
         // renderDish(dish){
@@ -66,7 +68,7 @@ class Menu extends Component{
             </div>
             <div className="row">
             {/* {this.renderDish(this.state.selectedDish)} */}
-            <Dishdetail selectedDish={this.state.selectedDish} ></Dishdetail>
+            <Dishdetail selectedDish={this.state.selectedDish} comments={this.state.selectedDishComment} ></Dishdetail>
             </div>
           </div>
         )

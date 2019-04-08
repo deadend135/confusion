@@ -25,11 +25,39 @@ class DishDetail extends Component{
             }
         }
 
-        renderComments(...comments){
+        renderComments(comments){
+            
             if(comments!=null){
+                const commentcomp=
+                comments.map(comment=>{
+                    return(
+                        <li key={comment.id}>
+                            <p>{comment.comment}</p>
+                            <p>--{comment.author}
+                        &nbsp;
+                        {new Intl.DateTimeFormat('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: '2-digit'
+                        }).format(new Date(comment.date))}
+                    </p>
+                        </li>
+                    )
+                })
             return(
             <div>
-                <h4>Comments</h4>
+                 <div>
+                <h4> Comments </h4>
+                <ul className='list-unstyled'>
+                
+               
+                    {commentcomp}
+                   
+                     
+                       
+                </ul>
+
+            </div>
 
             </div>
                 
@@ -50,8 +78,9 @@ class DishDetail extends Component{
         
         <div className="row" className="col-12 col-md-5 mt-1">
             {this.renderDish(this.props.selectedDish)}
-            {/* {this.renderComments(this.props.selectedDish.comments)} */}
+            {this.renderComments(this.props.comments)}
         </div>
+        
       </div>)
     }
 }
